@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE ORIGEM</h1>
+    <div class="buttons">
+      <button class="button" ng-click="opportunityStatusModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-input item-stacked-label">
+        <span class="input-label">Motivo de Perda</span>
+        <input type="text" name="marginPercOV" ng-model="opportunityForm.lossMotive">
+      </ion-item>
+      <ion-item class="item-stacked-label">
+        <button class="button button-assertive" ng-if="opportunityForm.lossMotive.length != 0" ng-click="opportunityStatusModal.hide(); updateSalesState(2)">Proposta Perdida</button>
+        <button class="button button-balanced" ng-if="opportunityForm.lossMotive.length == 0" ng-click="opportunityStatusModal.hide(); updateSalesState(1)">Proposta Ganha</button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

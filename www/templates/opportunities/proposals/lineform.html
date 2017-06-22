@@ -1,0 +1,71 @@
+<ion-view view-title="{{titleText}}" ng-init="getAllProposalsLine(); getProposalsLine();">
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button" ng-if="!formIsDisabled && 'CRIAR LINHA DE PROPOSTA' == submitField" ng-click="editProposalLine()">Gravar alterações</button>
+      <button class="button" ng-if="'CRIAR LINHA DE PROPOSTA' == submitField" ng-click="activateEdition()">{{editButtonText}}</button>
+      <button class="button" ng-click="action()">{{submitField}}</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <form name="contactForm">
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES GERAIS</span>
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Número de Linha</span>
+          <input type="number" ng-model="proposalsLineForm.line" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Artigo</span>
+          <input type="text" name="name" ng-model="proposalsLineForm.article" ng-click="selectProduct()" ng-required="true" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Descrição</span>
+          <input type="text" name="name" ng-model="proposalsLineForm.description" ng-click="selectProduct()" ng-required="true" readonly>
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Unidade</span>
+          <input type="text" ng-model="proposalsLineForm.unit" ng-click="selectProduct()" ng-required="true" readonly>
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Preço por Unidade</span>
+          <input type="text" ng-model="proposalsLineForm.ppunit" ng-required="true" readonly>
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Quantidade</span>
+          <input type="text" ng-model="proposalsLineForm.quantity" ng-change="updateValues()" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Preço Custo</span>
+          <input type="text" ng-model="proposalsLineForm.costPrice" readonly ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Preço Venda</span>
+          <input type="text" ng-model="proposalsLineForm.sellsPrice" ng-change="updateMargin()" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Margem</span>
+          <input type="text" ng-model="proposalsLineForm.margin" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Desconto</span>
+          <input type="text" ng-model="proposalsLineForm.discount" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Valor Desconto</span>
+          <input type="text" ng-model="proposalsLineForm.discountValue" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Observações</span>
+          <input type="text" ng-model="proposalsLineForm.observations" ng-disabled="formIsDisabled">
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

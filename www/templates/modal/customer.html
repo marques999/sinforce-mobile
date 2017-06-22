@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE CLIENTE</h1>
+    <div class="buttons">
+      <button class="button" ng-click="customerModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="customer in customers" ng-click="onSelectCustomer()" ng-model="entityModel.customer" ng-value="customer">
+        <strong>{{customer.id || 'N/A'}}</strong>
+        <p>{{customer.name || 'Desconhecido'}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

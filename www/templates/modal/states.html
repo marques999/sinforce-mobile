@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECIONE ESTADO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="statesModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="estado in estados" ng-click="statesModal.hide()" ng-model="opportunityForm.status" ng-value="estado.id">
+        <div class="row">
+          <strong class="col-20">{{estado.id}}</strong>
+          <span>{{estado.descricao}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

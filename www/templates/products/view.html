@@ -1,0 +1,135 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">{{product.name}}</h1>
+    <div class="buttons">
+      <button class="button" ng-click="productModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-item class="item item-dark item-divider">
+      <span>INFORMAÇÕES GERAIS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Identificador</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{product.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Descrição</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{product.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Código</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(product.barcode) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Unidades</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(product.units) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>IVA</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(product.tax) + '%' || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Desconto</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{product.discount != 0 && (product.discount | percentage) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Stock</strong>
+      </div>
+      <div class="col text-right">
+        <span ng-class="(product.stock > 0 && 'balanced') || 'assertive'">{{product.stock}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>CATEGORIA</span>
+    </ion-item>
+    <ion-item ng-if="product.category" class="row">
+      <div class="col">
+        <strong>Identificador</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{product.category.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Descrição</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{product.category.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>PREÇOS</span>
+    </ion-item>
+    <ion-item class="row" ng-repeat="object in product.prices track by $index">
+      <div class="col">
+        <strong>Preço {{$index + 1}}</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(object.price | currency: '€') || 'N/A'}}</span>
+        <span ng-if="!object.tax">+ IVA</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>ATIVIDADE RECENTE</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Criado em</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(product.dateCreated | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Última actualização</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(product.dateModified | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>ARMAZÉNS</span>
+    </ion-item>
+    <ion-item ng-if="product.warehouses == null || product.warehouses.length == 0">
+      <p>Não foram encontrados quaisquer armazéns.</p>
+    </ion-item>
+    <ion-item ng-repeat="warehouse in product.warehouses" ng-click="chooseWarehouse({{warehouse.id}})">
+      <strong>{{warehouse.name}}</strong>
+      <span class="badge badge-dark">{{warehouse.stock || 0}} {{product.units || 'N/A'}}</span>
+      <p ng-if="warehouse.location.address">
+        <span>{{warehouse.location.address}}</span>
+      </p>
+      <p ng-if="warehouse.location.postal && warehouse.location.parish">
+        <span>{{warehouse.location.postal}} {{warehouse.location.parish | uppercase}}</span>
+      </p>
+    </ion-item>
+  </ion-content>
+</ion-modal-view>

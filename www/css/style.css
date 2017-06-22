@@ -1,0 +1,690 @@
+/*
+  +====================================================+
+  | IONIC Fixed Action Button                          |
+  +====================================================+
+*/
+
+.button-create {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 3px 4px 4px #aaa;
+  line-height: 180%;
+  font-size: 0.9rem;
+  padding-left: 7px;
+}
+
+.button-create i {
+  font-size: 1.8rem;
+  line-height: 180%;
+}
+
+.button-calendar i {
+  font-size: 1.4rem;
+  line-height: 180%;
+}
+
+.button-contact i {
+  font-size: 1.67rem;
+  line-height: 180%;
+}
+
+/*
+  +====================================================+
+  | IONIC Profile View                                 |
+  +====================================================+
+*/
+
+#profile-info {
+  background-color: #447889;
+  padding: 8px;
+  text-align: center;
+  box-shadow: 0px 0px 8px;
+}
+
+#profile-name {
+  color: #fff;
+  font-family: 'OswaldRegular';
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+#profile-description {
+  font-size: 15px;
+  color: #ddd;
+}
+
+#profile-image {
+  display: block;
+  border-radius: 128px;
+  width: 128px;
+  height: 128px;
+  margin: 16px auto;
+}
+
+#profile-icon {
+  display: block;
+  color: white;
+  width: 64px;
+  height: 64x;
+  margin: 16px auto;
+}
+
+#profile-buttons a {
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  padding: 2px 14px;
+}
+
+ion-item.full-text {
+  white-space: normal;
+}
+
+/*
+  +====================================================+
+  | IONIC Calendar                                     |
+  +====================================================+
+*/
+
+table.monthview-datetable tr>.monthview-primary-with-event {
+  background-color: #99E5FF;
+}
+
+table.monthview-datetable tr>.monthview-secondary-with-event {
+  background-color: #D1F3FF;
+}
+
+table.monthview-datetable tr>.monthview-selected {
+  background-color: #4C8FA5;
+}
+
+.event-detail {
+  background-color: #EAF9FF;
+}
+
+.table.monthview-datetable,
+.dayview-normal-event-table,
+.weekview-normal-event-table {
+  border: none;
+  background-color: #EAF9FF;
+}
+
+.weekview-header,
+.dayview-allday-table,
+.weekview-allday-table,
+table.monthview-datetable th {
+  background-color: #F4FCFF;
+}
+
+.calendar-hour-column,
+.dayview-allday-label {
+  color: #444;
+}
+
+/*
+  +====================================================+
+  | IONIC Inputs                                       |
+  +====================================================+
+*/
+
+input[readonly] {
+  background-color: white !important;
+}
+
+.form-errors {
+  margin-top: 0.33em;
+  margin-bottom: 0.33em;
+}
+
+.form-error {
+  border-left: 2px solid red;
+  padding: 2px 0 2px 12px;
+  color: red;
+}
+
+.no-event-label {
+  background-color: #444 !important;
+  color: white;
+}
+
+.monthview-eventdetail-timecolumn {
+  background-color: #4C8FA5 !important;
+  color: white;
+}
+
+/*
+  +====================================================+
+  | IONIC Fonts                                        |
+  +====================================================+
+*/
+
+@font-face {
+  font-family: 'LatoRegular';
+  src: url('../../fonts/LatoRegular.eot');
+  src: url('../../fonts/LatoRegular.eot') format('embedded-opentype'), url('../../fonts/LatoRegular.woff2') format('woff2'), url('../../fonts/LatoRegular.woff') format('woff'), url('../../fonts/LatoRegular.ttf') format('truetype'), url('../../fonts/LatoRegular.svg#LatoRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBlack';
+  src: url('../../fonts/LatoBlack.eot');
+  src: url('../../fonts/LatoBlack.eot') format('embedded-opentype'), url('../../fonts/LatoBlack.woff2') format('woff2'), url('../../fonts/LatoBlack.woff') format('woff'), url('../../fonts/LatoBlack.ttf') format('truetype'), url('../../fonts/LatoBlack.svg#LatoBlack') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoLight';
+  src: url('../../fonts/LatoLight.eot');
+  src: url('../../fonts/LatoLight.eot') format('embedded-opentype'), url('../../fonts/LatoLight.woff2') format('woff2'), url('../../fonts/LatoLight.woff') format('woff'), url('../../fonts/LatoLight.ttf') format('truetype'), url('../../fonts/LatoLight.svg#LatoLight') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBold';
+  src: url('../../fonts/LatoBold.eot');
+  src: url('../../fonts/LatoBold.eot') format('embedded-opentype'), url('../../fonts/LatoBold.woff2') format('woff2'), url('../../fonts/LatoBold.woff') format('woff'), url('../../fonts/LatoBold.ttf') format('truetype'), url('../../fonts/LatoBold.svg#LatoBold') format('svg');
+}
+
+@font-face {
+  font-family: 'OswaldRegular';
+  src: url('../fonts/OswaldRegular.eot');
+  src: url('../fonts/OswaldRegular.eot') format('embedded-opentype'), url('../fonts/OswaldRegular.woff2') format('woff2'), url('../fonts/OswaldRegular.woff') format('woff'), url('../fonts/OswaldRegular.ttf') format('truetype'), url('../fonts/OswaldRegular.svg#OswaldRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'OswaldBold';
+  src: url('../../fonts/OswaldBold.eot');
+  src: url('../../fonts/OswaldBold.eot') format('embedded-opentype'), url('../../fonts/OswaldBold.woff2') format('woff2'), url('../../fonts/OswaldBold.woff') format('woff'), url('../../fonts/OswaldBold.ttf') format('truetype'), url('../../fonts/OswaldBold.svg#OswaldBold') format('svg');
+}
+
+/*
+  +====================================================+
+  | IONIC Elements                                     |
+  +====================================================+
+*/
+
+body,
+.ionic-body {
+  font-family: "LatoRegular", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "LatoRegular", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.title {
+  font-family: "OswaldRegular", "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.tab-item,
+.item-divider.item-dark {
+  font-family: "OswaldRegular", "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+input,
+button,
+select,
+textarea,
+.list-menu {
+  font-family: "LatoRegular", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.list-menu .item-avatar {
+  border: 0;
+}
+
+.list-menu .item-avatar h2 {
+  color: white;
+}
+
+.list-menu .item-avatar p {
+  color: #bbb;
+}
+
+/*
+  +====================================================+
+  | IONIC Misc                                         |
+  +====================================================+
+*/
+
+ion-item strong {
+  line-height: 1.66em;
+}
+
+.tabs {
+  height: 52px;
+  border: none;
+  line-height: 52px;
+}
+
+p.wrap {
+  overflow: initial;
+  white-space: initial;
+  margin-top: 0.5em;
+}
+
+.custom-popup .popup {
+  width: 80%
+}
+
+.item .badge {
+  right: 16px;
+}
+
+.tabs-icon-top>.tabs .tab-item,
+.tabs-icon-top.tabs .tab-item,
+.tabs-icon-bottom>.tabs .tab-item,
+.tabs-icon-bottom.tabs .tab-item {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+/*
+  +====================================================+
+  | IONIC Search                                       |
+  +====================================================+
+*/
+
+.item-search {
+  border: 0;
+  margin-top: 0;
+}
+
+.item-search label {
+  border-radius: 24px;
+  padding: 2px 16px;
+}
+
+/*
+  +====================================================+
+  | IONIC Sidenav                                      |
+  +====================================================+
+*/
+
+.custom-icon {
+  padding: 4px 0px;
+  background-color: #55717A;
+  border-radius: 8px;
+  display: inline-block;
+  width: 2.0em;
+  margin-right: 8px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.list-menu ion-item {
+  border: 0;
+}
+
+ion-side-menu {
+  background-color: #35464C !important;
+}
+
+/*
+  +====================================================+
+  | IONIC Popup                                        |
+  +====================================================+
+*/
+
+div.popup {
+  border-radius: 4px !important;
+}
+
+.popup-head {
+  background-color: #447889;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.popup-head .popup-title {
+  font-family: "OswaldRegular";
+  text-transform: uppercase;
+  color: white;
+}
+
+.popup-buttons .button-default {
+  background-color: #ccc;
+}
+
+.popup-buttons .button-positive {
+  background-color: #447889;
+}
+
+/*
+  +====================================================+
+  | IONIC Timeline                                     |
+  +====================================================+
+*/
+
+.pos-absolute-right {
+  position: absolute;
+  right: 8px;
+}
+
+.timeline {
+  position: relative;
+  margin: 15px 0 0 0;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #8EA9B2;
+  left: 44px;
+  margin-left: -10px;
+  z-index: 1;
+}
+
+.timeline .timeline-thumb {
+  border-radius: 500px;
+  width: 50px;
+  z-index: 2;
+  position: absolute;
+  left: 10px
+}
+
+.timeline .timeline-thumb.timeline-icon {
+  height: 50px;
+  text-align: center;
+  color: white;
+  border: 5px solid #CBD0D3;
+}
+
+.timeline .timeline-thumb.timeline-icon i {
+  font-size: 28px;
+  margin: 6px 0;
+  display: block;
+}
+
+.timeline .timeline-item {
+  margin-left: 72px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.timeline .timeline-stats {
+  position: relative;
+  font-size: 14px;
+  color: #7F8C8D;
+}
+
+.divider-title {
+  background: #e4e4e4;
+  padding: 5px 15px;
+}
+
+.text-muted {
+  color: #6d6d72 !important;
+}
+
+.bg-color-blue {
+  background-color: #007aff !important;
+}
+
+.bg-color-bluegray {
+  background-color: #607d8b !important;
+}
+
+.bg-color-gray {
+  color: #8e8e93 !important;
+}
+
+.bg-color-green {
+  background-color: #4cd964 !important;
+}
+
+.bg-color-lightblue {
+  background-color: #5ac8fa !important;
+}
+
+.bg-color-night {
+  color: #2B1B17 !important;
+}
+
+.bg-color-orange {
+  background-color: #ff9500 !important;
+}
+
+.bg-color-red {
+  background-color: #ff3b30 !important;
+}
+
+.bg-color-white {
+  background-color: #ffffff;
+}
+
+.bg-color-yellow {
+  background-color: #ffcc00 !important;
+}
+
+.color-black {
+  color: black !important;
+}
+
+.color-blue {
+  color: #007aff !important;
+}
+
+.color-bluegray {
+  color: #607d8b !important;
+}
+
+.color-gray {
+  color: #8e8e93 !important;
+}
+
+.color-green {
+  color: #4cd964 !important;
+}
+
+.color-lightblue {
+  color: #5ac8fa !important;
+}
+
+.color-night {
+  color: #2B1B17 !important;
+}
+
+.color-orange {
+  color: #ff9500 !important;
+}
+
+.color-red {
+  color: #ff3b30 !important;
+}
+
+.color-white {
+  color: #ffffff !important;
+}
+
+.color-yellow {
+  color: #ffcc00 !important;
+}
+
+.timeline-item>p {
+  font-family: "LatoLight", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+/*
+  +====================================================+
+  | IONIC Nifty Modal                                  |
+  +====================================================+
+*/
+
+.ion-nifty-modal {
+  width: 90%;
+  min-height: 0 !important;
+  height: 200px;
+  left: 5%;
+  right: 5%;
+  background-color: transparent;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-type {
+  height: 370px !important;
+  top: 20%;
+}
+
+.modal-source {
+  height: 266px !important;
+  top: 30%;
+}
+
+.ion-nifty-modal .ion-modal-content-custom {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}
+
+.slide-in-up {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.slide-in-up.ng-enter,
+.slide-in-up>.ng-enter {
+  -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+  transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+}
+
+.slide-in-up.ng-enter-active,
+.slide-in-up>.ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-in-up.ng-leave,
+.slide-in-up>.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+.slide-in-down {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+.slide-in-down.ng-enter,
+.slide-in-down>.ng-enter {
+  -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+  transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+}
+
+.slide-in-down.ng-enter-active,
+.slide-in-down>.ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-in-down.ng-leave,
+.slide-in-down>.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+.fade-in-scale {
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
+}
+
+.fade-in-scale.ng-enter,
+.fade-in-scale>.ng-enter {
+  -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+  transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+  opacity: 1;
+}
+
+.fade-in-scale.ng-enter-active,
+.fade-in-scale>.ng-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.fade-in-scale.ng-leave,
+.fade-in-scale>.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+.fade-in-right {
+  -webkit-transform: translate3d(20%, 0, 0);
+  transform: translate3d(20%, 0, 0);
+  opacity: 0;
+}
+
+.fade-in-right.ng-enter,
+.fade-in-right>.ng-enter {
+  -webkit-transition: all cubic-bezier(0.25, 0.5, 0.5, 0.9) 0.3s;
+  transition: all cubic-bezier(0.25, 0.5, 0.5, 0.9) 0.3s;
+  opacity: 1;
+}
+
+.fade-in-right.ng-enter-active,
+.fade-in-right>.ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.fade-in-right.ng-leave,
+.fade-in-right>.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+.fade-in-left {
+  -webkit-transform: translate3d(-20%, 0, 0);
+  transform: translate3d(-20%, 0, 0);
+  opacity: 0;
+}
+
+.fade-in-left.ng-enter,
+.fade-in-left>.ng-enter {
+  -webkit-transition: all cubic-bezier(0.25, 0.5, 0.5, 0.9) 0.3s;
+  transition: all cubic-bezier(0.25, 0.5, 0.5, 0.9) 0.3s;
+  opacity: 1;
+}
+
+.fade-in-left.ng-enter-active,
+.fade-in-left>.ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.fade-in-left.ng-leave,
+.fade-in-left>.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}

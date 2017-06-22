@@ -1,0 +1,17 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE VENDEDOR</h1>
+    <div class="buttons">
+      <button class="button" ng-click="representativeModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio class="item-avatar" ng-repeat="representative in representatives" ng-click="representativeModal.hide()" ng-model="userModel.representative" ng-value="representative">
+        <img src="img/avatar_720-vflYJnzBZ.png">
+        <strong>{{representative.name}}</strong>
+        <p>Comissão: {{representative.comission | percentage}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE ZONA</h1>
+    <div class="buttons">
+      <button class="button" ng-click="zonasModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="zone in zonas" ng-click="zonasModal.hide()" ng-model="opportunityForm.zone" ng-value="zone.id">
+        <div class="row">
+          <strong class="col-20">{{zone.id}}</strong>
+          <span>{{zone.descricao}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

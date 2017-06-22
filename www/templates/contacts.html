@@ -1,0 +1,23 @@
+<ion-view view-title="CONTACTOS">
+  <ion-content>
+    <ion-refresher pulling-text="Deslize para actualizar..." on-refresh="refreshContacts(false)">
+    </ion-refresher>
+    <ion-item class="item-search">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="contactSearch.name" placeholder="Pesquisar">
+      </label>
+    </ion-item>
+    <ion-list ng-repeat="(letter, value) in contacts | filter: contactSearch | orderBy: 'name' | groupBy: 'name[0].toUpperCase()'">
+      <ion-item class="item-divider">{{letter}}</ion-item>
+      <ion-item ng-repeat="item in value" ng-click="viewContact(item.id)">
+        <span>{{item.name}}</span>
+        <ion-option-button ng-click="deleteContact(item)" class="button-assertive">Apagar</ion-option-button>
+        <ion-option-button ng-click="updateContact(item.id)" class="button-royal">Editar</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <button class="button button-royal button-create button-contact ion-plus" ui-sref="app.contacts-register">
+    <i class="ion-person"></i>
+  </button>
+</ion-view>

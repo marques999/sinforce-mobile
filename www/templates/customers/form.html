@@ -1,0 +1,86 @@
+<ion-view view-title="{{formTitle}}">
+  <form name="customerForm">
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="button" ng-click="pickContact()">
+          <i class="ion-person icon"></i>
+        </button>
+        <button class="button" ng-click="saveCustomer()" ng-disabled="customerForm.$invalid">Submeter</button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES GERAIS</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Nome Fiscal</span>
+          <input type="text" name="name" ng-model="userModel.name" placeholder="John Doe" ng-required="true">
+          <div class="form-errors" ng-messages="customerForm.name.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Nº Contribuinte</span>
+          <input type="number" name="tax" ng-model="userModel.taxNumber" ng-minlength="9" ng-maxlength="9" placeholder="12345678" ng-required="true">
+          <div class="form-errors" ng-messages="customerForm.tax.$error">
+            <div class="form-error" ng-message="minlength">Deve conter exatamente 9 dígitos!</div>
+            <div class="form-error" ng-message="maxlength">Deve conter exatamente 9 dígitos!!</div>
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </ion-item>
+        <ion-checkbox ng-model="userModel.particular">Pessoa Singular</ion-checkbox>
+        <ion-item class="item-dark item-divider">
+          <span>CONTACTO</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Telefone</span>
+          <input type="number" name="phone" ng-model="userModel.phone" placeholder="123456789">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Fax</span>
+          <input type="number" name="phone2" ng-model="userModel.phone2" placeholder="123456789">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Telemóvel</span>
+          <input type="number" name="mobile" ng-model="userModel.mobile" placeholder="123456789" ng-required="true">
+          <div class="form-errors" ng-messages="customerForm.mobile.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Website</span>
+          <input type="url" name="website" ng-model="userModel.website" placeholder="www.example.com">
+          <div class="form-errors" ng-messages="customerForm.website.$error">
+            <div class="form-error" ng-message="url">Introduza um endereço URL válido!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>LOCALIZAÇÃO</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">País</span>
+          <input type="text" name="country" ng-model="locationModel.country.name" ng-click="viewPaises()" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Morada</span>
+          <input type="text" name="morada" ng-model="locationModel.address" placeholder="Rua da Indústria, nº 1">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Código Postal</span>
+          <input type="text" name="postal" ng-model="locationModel.postal" placeholder="4200-001">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="locationModel.country.id == 'PT'">
+          <span class="input-label">Distrito</span>
+          <input type="text" name="state" ng-model="locationModel.state.name" ng-click="viewDistritos()" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="locationModel.country.id == 'PT'">
+          <span class="input-label">Concelho</span>
+          <input type="text" name="parish" ng-model="locationModel.parish.name" ng-click="viewConcelhos()" readonly>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </form>
+</ion-view>

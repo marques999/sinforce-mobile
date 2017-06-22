@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE TIPO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="eventModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="tipo in tipos" ng-click="eventModal.hide()" ng-model="activityModel.type" ng-value="tipo">
+        <strong>{{tipo.type}}</strong>
+        <p>{{tipo.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

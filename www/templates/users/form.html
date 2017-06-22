@@ -1,0 +1,51 @@
+<ion-view view-title="{{formTitle}}">
+  <form name="userForm">
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="button" ng-click="submit()" ng-disabled="userForm.$invalid">Submeter</button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES DO UTILIZADOR</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="!updateRepresentative">
+          <strong class="input-label">Username</strong>
+          <input type="text" name="username" ng-model="userModel.username" placeholder="john.doe" ng-required="true">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="updateRepresentative">
+          <strong class="input-label">Palavra-passe actual</strong>
+          <input type="previous" name="previous" ng-model="userModel.previous" ng-minlength="6" placeholder="123456789">
+          <div class="form-errors" ng-messages="userForm.previous.$error">
+            <div class="form-error" ng-message="minlength">Deve conter pelo menos 6 caracteres!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <strong class="input-label">Palavra-passe nova</strong>
+          <input type="password" name="password" ng-model="userModel.password" ng-minlength="6" placeholder="123456789" ng-required="!updateRepresentative">
+          <div class="form-errors" ng-messages="userForm.password.$error">
+            <div class="form-error" ng-message="minlength">Deve conter pelo menos 6 caracteres!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <strong class="input-label">Confirmar palavra-passe</strong>
+          <input type="password" name="confirm" match-password="password" ng-model="userModel.confirm" ng-minlength="6" placeholder="123456789" ng-required="!updateRepresentative">
+          <div class="form-errors" ng-messages="userForm.confirm.$error">
+            <div class="form-error" ng-message="passwordMatch">As palavras-passes não correspondem!</div>
+            <div class="form-error" ng-message="minlength">Deve conter pelo menos 6 caracteres!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>INTEGRAÇÃO PRIMAVERA</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <strong class="input-label">Vendedor</strong>
+          <input type="text" name="representative" ng-model="userModel.representative.name" ng-click="viewRepresentatives()" readonly>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </form>
+</ion-view>

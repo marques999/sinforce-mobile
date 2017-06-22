@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE PAÍS</h1>
+    <div class="buttons">
+      <button class="button" ng-click="paisesModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="country in paises" ng-click="paisesModal.hide()" ng-model="locationModel.country" ng-value="country">
+        <div class="row">
+          <strong class="col-20">{{country.id}}</strong>
+          <span>{{country.name}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

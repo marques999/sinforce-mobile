@@ -1,0 +1,29 @@
+<ion-view view-title="LEADS">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider item-dark">DISTRIBUIÇÃO POR ESTADO</ion-item>
+      <ion-item>
+        <canvas class="chart chart-pie" chart-data="data2" chart-labels="labels2"></canvas>
+      </ion-item>
+    </ion-list>
+    <ion-item class="item-divider item-dark">ATIVIDADE RECENTE</ion-item>
+    <ul class="timeline">
+      <li ng-repeat="lead in timelineLeads | filter: leadSearch | orderBy: '-dateModified' | limitTo: 4">
+        <div class="timeline-item">
+          <div class="timeline-thumb timeline-icon" ng-class="getGraphicColor(lead)">
+            <i class="{{getGraphicIcon(lead)}}"></i>
+          </div>
+          <p class="wrap">{{lead.name}} </p>
+          <div class="timeline-stats">
+            <i class="ion-quote"></i>
+            <span>[{{thirdpartytypes[lead.thirdPartyType] || 'Desconhecido'}}]</span>
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i>{{lead.dateModified | date: 'yyyy-MM-dd HH:mm'}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+  <button class="button button-royal button-create button-contact ion-plus" ng-click="gotoForm('leadCreationForm')">
+    <i class="ion-person"></i>
+  </button>
+</ion-view>

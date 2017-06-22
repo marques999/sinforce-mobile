@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE CICLO DE VENDA</h1>
+    <div class="buttons">
+      <button class="button" ng-click="sellscycleModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="cycle in sellsCycle" ng-click="sellscycleModal.hide()" ng-model="opportunityForm.sellscycle" ng-value="cycle.ciclo">
+        <div class="row">
+          <strong class="col-20">{{cycle.ciclo}}</strong>
+          <span>{{cycle.descricao}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

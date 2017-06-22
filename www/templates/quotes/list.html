@@ -1,0 +1,41 @@
+<ion-view>
+  <link rel="stylesheet" href="css/quotes.style.css">
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>
+      <div ng-if="normalBar">ENCOMENDAS</div>
+      <div ng-if="!normalBar" id="search-box">
+        <input type="text" autofocus placeholder="Pesquisar Encomenda" ng-model="searchVal.name" id="search-input"></input>
+        <div id="cancel-search" ng-hide="searchVal.name == ''">
+          <button class="button button-icon ion-android-close" ng-click="searchVal.name = ''"></button>
+        </div>
+      </div>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+      <div ng-if="normalBar">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </div>
+      <div ng-if="!normalBar">
+        <button id="search-back" class="button button-icon button-clear ion-arrow-left-c" ng-click="toggleNavigation()"></button>
+      </div>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <div ng-if="normalBar">
+        <button class="button button-icon ion-android-search" ng-click="toggleNavigation()"></button>
+      </div>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-refresher pulling-text="Deslize para actualizar..." on-refresh="refreshQuotes(false)">
+    </ion-refresher>
+    <ion-list class="has-header">						
+      <ion-item class="item item-input item-stacked-label" ng-repeat="quote in quotes | filter:quoteSearch | limitTo:numberOfItemsToDisplay"ng-click="viewQuote(quote.quoteNum)" item-render-buffer="10">
+        <strong style="font-weight:bold;">#{{quote.quoteNum}}</strong>
+        <br>Cliente: {{quote.clientName}}
+        <br>Data: {{quote.date | date:'yyyy-MM-dd HH:mm:ss'}}
+        <h3 style="text-align:right;font-weight:bold;margin-right:20px;color:#444;">Total: {{quote.totalDocument | currency: '€'}}</h3>
+      </ion-item>         
+    </ion-list> 
+    <ion-infinite-scroll on-infinite="addMoreItem()" ng-if="quotes.length > numberOfItemsToDisplay" icon="ion-loading-c" distance="150px"></ion-infinite-scroll>
+  </ion-content>
+  <button class="button button-royal button-create ion-plus" ng-click="state.go('app.quotes.register')"><i class="ion-ios-cart"></i></button>
+</ion-view>

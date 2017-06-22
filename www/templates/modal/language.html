@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE IDIOMA</h1>
+    <div class="buttons">
+      <button class="button" ng-click="languageModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="language in languages" ng-click="languageModal.hide()" ng-model="languageModel.language" ng-value="language">
+        <div class="row">
+          <strong class="col-20">{{language.id}}</strong>
+          <span>{{language.name}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

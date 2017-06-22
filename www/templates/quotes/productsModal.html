@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE UM PRODUTO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="productsModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="method in products" ng-click="onSelectProduct(method)" ng-model="productsModel.product">
+        <strong class="col-20">{{method.id}}</strong>
+        <p>{{method.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

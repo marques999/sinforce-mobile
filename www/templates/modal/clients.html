@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECIONE CLIENTE</h1>
+    <div class="buttons">
+      <button class="button" ng-click="clientsModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="contact in contacts" ng-click="clientsModal.hide()" ng-model="opportunityForm.entity" ng-value="contact.id">
+        <strong class="col-20">{{contact.id}}</strong>
+        <p>{{contact.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

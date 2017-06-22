@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE CONCELHO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="concelhosModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="concelho in concelhos" ng-click="concelhosModal.hide()" ng-model="locationModel.parish" ng-value="concelho">
+        <div class="row">
+          <strong class="col-20">{{concelho.id}}</strong>
+          <span>{{concelho.name}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

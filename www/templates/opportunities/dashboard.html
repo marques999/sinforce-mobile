@@ -1,0 +1,41 @@
+<ion-view view-title="OPORTUNIDADES" ng-init="refreshOpportunities(false)">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider item-dark">Bla</ion-item>
+      <ion-item>
+        <canvas id="bar" class="chart chart-bar" chart-data="values" chart-labels="entitiesName" chart-legend="true"></canvas>
+      </ion-item>
+      <ion-item class="item-divider item-dark">POR TIPO DE ENTIDADE</ion-item>
+      <ion-item>
+        <canvas id="bar1" class="chart chart-bar" chart-data="tiposClienteData" chart-labels="tiposCliente" chart-series="series"></canvas>
+      </ion-item>
+      <ion-item class="item-divider item-dark">POR ORIGEM</ion-item>
+      <ion-item>
+        <canvas id="bar2" class="chart chart-bar" chart-data="tiposOrigemData" chart-labels="tiposOrigem" chart-series="series"></canvas>
+      </ion-item>
+      <ion-item class="item-divider item-dark">DISTRIBUIÇÃO</ion-item>
+      <ion-item>
+        <canvas class="chart chart-pie" chart-data="entidade" chart-labels="entitiesName" chart-legend="true" chart-options="pieChartDefaultOptions"></canvas>
+      </ion-item>
+    </ion-list>
+    <ion-item class="item-divider item-dark">ATIVIDADE RECENTE</ion-item>
+    <ul class="timeline">
+      <li ng-repeat="opportunity in opportunities | orderBy: '-dateModified' | limitTo: 5">
+        <div class="timeline-item">
+          <div class="timeline-thumb timeline-icon" ng-class="getTimelineColor(opportunity)">
+            <i class="{{getTimelineIcon(opportunity)}}"></i>
+          </div>
+          <p class="wrap">{{opportunity.description}} </p>
+          <div class="timeline-stats">
+            <span>[{{getTimelineDescription(opportunity)}}]</span>
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i>{{opportunity.dateModified | date: 'yyyy-MM-dd HH:mm'}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+  <button class="button button-royal button-create" ui-sref="app.opportunities-register">
+    <span>+</span>
+    <i class="ion-ios-book-outline"></i>
+  </button>
+</ion-view>

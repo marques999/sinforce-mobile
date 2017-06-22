@@ -1,0 +1,20 @@
+<ion-view view-title="OPORTUNIDADES" ng-init="refreshOpportunities(false)">
+  <ion-content>
+    <ion-refresher pulling-text="Deslize para actualizar..." on-refresh="refreshOpportunities(false)">
+    </ion-refresher>
+    <ion-list>
+      <ion-list ng-repeat="(letter, value) in inactiveOpportunities | filter: opportunitySearch | orderBy: 'description' | groupBy: 'description[0].toUpperCase()'">
+        <ion-item class="item-divider">{{letter}}</ion-item>
+        <ion-item ng-repeat="item in value" ng-click="goToViewOpportunity(item.id)">
+          <span>{{item.description}}</span>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer item-input-inset footer-item-input-insert">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Pesquisar" ng-model="opportunitySearch.description">
+    </label>
+  </div>
+</ion-view>

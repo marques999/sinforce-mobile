@@ -1,0 +1,32 @@
+<ion-view view-title="CLIENTES">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider item-dark">DISTRIBUIÇÃO POR ESTADO</ion-item>
+      <ion-item>
+        <canvas class="chart chart-pie" chart-data="data2" chart-labels="labels2" chart-options="pieChartDefaultOptions"></canvas>
+      </ion-item>
+      <ion-item class="item-divider item-dark">ATIVIDADE MENSAL</ion-item>
+      <ion-item>
+        <canvas class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-series="series" chart-options="pieChartDefaultOptions"></canvas>
+      </ion-item>
+    </ion-list>
+    <ion-item class="item-divider item-dark">ATIVIDADE RECENTE</ion-item>
+    <ul class="timeline">
+      <li ng-repeat="customer in customers | orderBy: '-dateModified' | limitTo: 5">
+        <div class="timeline-item">
+          <div class="timeline-thumb timeline-icon" ng-class="getTimelineColor(customer)">
+            <i class="{{getTimelineIcon(customer)}}"></i>
+          </div>
+          <p class="wrap">{{customer.name}} </p>
+          <div class="timeline-stats">
+            <span>[{{getTimelineDescription(customer)}}]</span>
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i>{{customer.dateModified | date: 'yyyy-MM-dd HH:mm'}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+  <button class="button button-royal button-create button-contact ion-plus" ui-sref="app.customers-register">
+    <i class="ion-person"></i>
+  </button>
+</ion-view>

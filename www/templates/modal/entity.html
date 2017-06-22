@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE {{origens[activityModel.source] | uppercase}}</h1>
+    <div class="buttons">
+      <button class="button" ng-click="entityModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="entity in entities" ng-click="entityModal.hide()" ng-model="activityModel.entity" ng-value="entity">
+        <strong>{{entity.id}}</strong>
+        <p>{{entity.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

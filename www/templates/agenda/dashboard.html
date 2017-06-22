@@ -1,0 +1,13 @@
+<ion-view view-title="{{viewTitle}}">
+  <ion-content scroll="false" class="main-content">
+    <calendar ng-model="calendar.currentDate"
+              calendar-mode="calendar.mode"
+              event-source="calendar.eventSource"
+              range-changed="reloadSource(startTime, endTime)"
+              title-changed="onViewTitleChanged(title)"
+              event-selected="viewActivity(event.id)"/>
+  </ion-content>
+  <button ui-sref="app.agenda-register" class="button button-royal button-create button-calendar ion-plus">
+    <i class="ion-calendar"></i>
+  </button>
+</ion-view>

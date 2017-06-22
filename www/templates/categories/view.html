@@ -1,0 +1,23 @@
+<ion-view view-title="{{category.name | uppercase}}">
+  <ion-content>
+    <ion-refresher pulling-text="Deslize para actualizar..." on-refresh="refreshCategory()">
+    </ion-refresher>
+    <ion-item class="item-search">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="userSearch.name" placeholder="Pesquisar">
+      </label>
+    </ion-item>
+    <ion-list>
+      <ion-item class="item-divider"></ion-item>
+      <ion-item class="row" collection-repeat="product in category.products | filter: userSearch | orderBy:'name'" ng-click="viewProduct(product.id)">
+        <div class="col col-67">
+          <p class="wrap">{{product.name}}</p>
+        </div>
+        <div class="col">
+          <button class="button button-small button-block button-outline" ng-class="(product.stock > 0 && 'button-balanced') || 'button-assertive'">{{product.average | currency:"€"}}/{{product.units}}</button>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

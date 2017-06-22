@@ -1,0 +1,31 @@
+<ion-view view-title="AUTENTICAÇÃO">
+  <ion-content>
+    <form name="loginForm" ng-submit="authenticateUser()" novalidate>
+      <div class="list padding">
+        <label class="item item-input item-stacked-label">
+          <strong class="input-label">Username</strong>
+          <input type="text" name="username" ng-model="loginData.username" placeholder="john_doe" ng-required="true">
+          <div class="form-errors" ng-messages="loginForm.username.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <strong class="input-label">Palavra-passe</strong>
+          <input type="password" name="password" ng-model="loginData.password" placeholder="123456789" ng-required="true">
+          <div class="form-errors" ng-messages="loginForm.password.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </label>
+        <button class="button button-block button-royal" ng-disabled="loginForm.$invalid" type="submit">Validar</button>
+      </div>
+    </form>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-dark" ui-sref="app.users-register">
+    <h1 class="title">Ainda não se encontra registado?</h1>
+    <div class="buttons">
+      <button class="button button-dark">
+     <i class="ion-arrow-right-a icon"></i>
+   </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

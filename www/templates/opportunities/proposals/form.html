@@ -1,0 +1,81 @@
+<ion-view view-title="{{titleText}}" ng-init="getAllProposalsLine()">
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-assertive" ng-if="titleText != 'CRIAR PROPOSTA'" ng-click="deleteProposal()">Apagar Proposta</button>
+      <button class="button" ng-click="goToOpportunity()">Retroceder</button>
+      <button class="button" ng-click="action()">{{submitField}}</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-refresher pulling-text="Atualizar..." on-refresh="getAllProposalsLine()"></ion-refresher>
+    <form name="contactForm">
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES GERAIS</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Descrição</span>
+          <input type="text" name="description" ng-model="proposalsForm.description" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Número da Proposta</span>
+          <input type="number" name="proposalnumber" ng-model="proposalsForm.proposalnumber" ng-required="true" readonly ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Método de Pagamento</span>
+          <input type="text" ng-model="proposalsForm.paymentmethod" ng-click="viewPaymentMethod()" ng-required="true" readonly ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Condições de Pagamento</span>
+          <input type="text" ng-model="proposalsForm.paymentcondition" ng-click="viewPaymentCondition()" ng-required="true" readonly ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Observações</span>
+          <textarea ng-model="proposalsForm.observations" style="resize:none;" ng-disabled="formIsDisabled"></textarea>
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Desconto Entidade</span>
+          <input type="number" min="0" max="100" ng-model="proposalsForm.entityDiscount" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label" ng-if="titleText != 'CRIAR PROPOSTA'">
+          <span class="input-label">Custo</span>
+          <input type="text" ng-model="proposalsForm.cost" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label" ng-if="titleText != 'CRIAR PROPOSTA'">
+          <span class="input-label">Valor</span>
+          <input type="text" ng-model="proposalsForm.value" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label" ng-if="titleText != 'CRIAR PROPOSTA'">
+          <span class="input-label">Margem</span>
+          <input type="text" ng-model="proposalsForm.margin" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label" ng-if="titleText != 'CRIAR PROPOSTA'">
+          <span class="input-label">Rentabilidade</span>
+          <input type="text" ng-model="proposalsForm.rentability" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label" ng-if="titleText != 'CRIAR PROPOSTA'">
+          <span class="input-label">Valor de Desconto</span>
+          <input type="text" ng-model="proposalsForm.discountValue" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-checkbox ng-model="proposalsForm.totalize" ng-if="titleText != 'VISUALIZAR PROPOSTA'" ng-disabled="formIsDisabled">Proposta não contribui para os totais da OV</ion-checkbox>
+        <ion-checkbox ng-model="proposalsForm.totalize" ng-if="titleText == 'VISUALIZAR PROPOSTA'" ng-disabled="formIsDisabled">{{infoTotalize}}</ion-checkbox>
+        <ion-item class="item-dark item-divider" ng-if="proposalLine.length > 0">
+          <span>ARTIGOS</span>
+        </ion-item>
+        <ion-item ng-init="queryProposals()" ng-repeat="proposal in proposalLine" class="item-input item-stacked-label" ng-click="viewProposalLine(proposal.idOportunidade, proposal.proposalNumber, proposal.line)">
+          <div>
+            <span class="input-label">{{proposal.description}}</span>
+            <p>Quantidade: {{proposal.quantity}}</p>
+            <p>Unidade: {{proposal.unit}}</p>
+            <p>Observações: {{proposal.observations}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

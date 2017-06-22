@@ -1,0 +1,55 @@
+#search-box #search-input {
+  display: inline-block;
+  font-size: 17px;
+  background: none;
+  color: white;
+  width: 63%;
+  background-color: rgb(80, 129, 145);
+  border-color: transparent;
+  padding: 0px 5px 0px 5px;
+  border-radius: 4px 0px 0px 4px;
+  margin-top: -5px;
+}
+
+#search-box #search-input::-webkit-input-placeholder {
+  color: #CCC;
+  text-overflow: ellipsis;
+  width: 63%;
+}
+
+#search-box #cancel-search {
+  display: inline-block;
+}
+
+#search-box #cancel-search>button {
+  left: -4px;
+  background-color: rgb(80, 129, 145);
+  border-radius: 0px 4px 4px 0px;
+  top: 5px;
+}
+
+#search-box #cancel-search>button::before {
+  font-size: 25px;
+}
+
+#search-box #cancel-search>button::before {
+  font-size: 25px;
+}
+
+#search-back::before {
+  font-size: 25px;
+}
+
+div.title.title-left.header-item[style] {
+  right: 0 !important;
+}
+
+button.input-icon {
+  font-size: 25px;
+  position: absolute;
+}
+
+button.button-edit {
+  right: 10px;
+  top: -5px;
+}

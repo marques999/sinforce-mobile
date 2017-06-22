@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE DISTRITO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="distritosModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="distrito in distritos" ng-change="refreshConcelhos(distrito.id)" ng-click="distritosModal.hide()" ng-model="locationModel.state" ng-value="distrito">
+        <div class="row">
+          <strong class="col-20">{{distrito.id}}</strong>
+          <span>{{distrito.name}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

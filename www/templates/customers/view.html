@@ -1,0 +1,177 @@
+<ion-view view-title="FICHA DO CLIENTE">
+  <ion-content>
+    <div id="profile-info">
+      <img id="profile-image" src="img/avatar_720-vflYJnzBZ.png">
+      <h3 id="profile-name">{{customer.name}}</h3>
+      <span id="profile-description">{{customer.particular ? 'Pessoa Singular' : 'Organização'}}</span>
+      <div id="profile-buttons" ng-if="customer.status == 'ACTIVO'">
+        <a ng-click="updateCustomer()" class="button button-small button-dark">Editar</a>
+        <a ng-click="deleteCustomer()" class="button button-small button-assertive">Apagar</a>
+      </div>
+    </div>
+    <ion-item class="item-dark item-divider">
+      <span>INFORMAÇÕES GERAIS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Estado</strong>
+      </div>
+      <div class="col text-right">
+        <span ng-class="(customer.status == 'ACTIVO' && 'balanced') || 'assertive'">{{customer.status}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>NIF</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.taxNumber || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Débito C/C.</strong>
+      </div>
+      <div class="col text-right">
+        <span ng-class="(customer.debt > 0 && 'assertive') || 'balanced'">{{customer.debt | currency: '€'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Enc. Pendentes</strong>
+      </div>
+      <div class="col text-right">
+        <span ng-class="(customer.pending > 0 && 'assertive') || 'balanced'">{{customer.pending | currency: '€'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>LOCALIZAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Morada</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.location.address || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Localidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.location.postal || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Concelho</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.location.parish || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Distrito</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.location.state || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>País</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(customer.location.country | isoCountry) || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>CONTACTOS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telemóvel</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="customer.mobile" href="tel:{{customer.mobile}}" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-telephone-outline"></i>
+          <span>{{customer.mobile}}</span>
+        </a>
+        <span ng-if="!customer.mobile">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telefone</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="customer.phone" href="tel:{{customer.phone}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-home-outline"></i>
+          <span>{{customer.phone}}</span>
+        </a>
+        <span ng-if="!customer.phone">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Fax</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="customer.phone2" href="tel:{{customer.phone2}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-home-outline"></i>
+          <span>{{customer.phone2}}</span>
+        </a>
+        <span ng-if="!customer.phone2">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-33">
+        <strong>Website</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="customer.website" href="{{customer.website}}" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-world-outline"></i>
+          <span>{{customer.website}}</span>
+        </a>
+        <span ng-if="!customer.website">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>ADMINISTRAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Identificador</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.id || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Criado por</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{customer.owner.name || 'Administrador'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Criado em</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(customer.dateCreated | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Última actualização</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(customer.dateModified | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

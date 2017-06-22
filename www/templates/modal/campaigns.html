@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECIONE CAMPANHA</h1>
+    <div class="buttons">
+      <button class="button" ng-click="campaignModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="campaign in campaigns" ng-click="campaignModal.hide()" ng-model="opportunityForm.campaign" ng-value="campaign.id">
+        <strong class="col-20">{{campaign.id}}</strong>
+        <p>{{campaign.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

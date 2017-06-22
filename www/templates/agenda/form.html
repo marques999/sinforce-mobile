@@ -1,0 +1,86 @@
+<ion-view view-title="{{formTitle}}">
+  <form name="activityForm">
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="button" ng-click="saveActivity()" ng-disabled="validateActivity(activityForm)">Submeter</button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES GERAIS</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Resumo</span>
+          <input type="text" name="name" ng-model="activityModel.name" placeholder="John Doe" ng-required="true">
+          <div class="form-errors" ng-messages="activityForm.name.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Local</span>
+          <input type="text" name="location" ng-model="activityModel.location">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Descrição</span>
+          <textarea name="description" ng-model="activityModel.description" rows="1" expanding-text></textarea>
+          <div class="form-errors" ng-messages="activityForm.description.$error">
+            <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Tipo</span>
+          <input type="text" name="type" ng-model="activityModel.type.name" ng-click="viewTypes()" ng-required="true" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Prioridade</span>
+          <div class="range">
+            <span>0</span>
+            <input type="range" name="priority" step="1" min="0" max="3" ng-model="activityModel.priority">
+            <span>3</span>
+          </div>
+          <div class="text-center">
+            <small>{{getPriority(activityModel)}}</small>
+          </div>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>ENTIDADE</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Origem</span>
+          <input type="text" name="source" ng-model="origens[activityModel.source]" ng-required="true" ng-click="viewSources()" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Contacto</span>
+          <input type="text" name="entity" ng-model="activityModel.entity.name" ng-required="true" ng-click="viewEntities()" readonly>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>CALENDÁRIO</span>
+        </ion-item>
+        <div class="item" ion-datetime-picker date ng-model="activityModel.date">
+          <span class="input-label">Data</span>
+          <small ng-if="activityModel.date">{{activityModel.date | date: 'dd/MM/yyyy'}}</small>
+          <div class="form-errors" ng-if="!activityModel.date">
+            <div class="form-error">Campo de preenchimento obrigatório!</div>
+          </div>
+        </div>
+        <div class="item" ion-datetime-picker time ng-model="activityModel.start">
+          <span class="input-label">Hora Início</span>
+          <small ng-if="activityModel.start">{{activityModel.start | date: 'HH:mm'}}</small>
+          <div class="form-errors" ng-if="!activityModel.start">
+            <div class="form-error">Campo de preenchimento obrigatório!</div>
+          </div>
+        </div>
+        <div class="item" ion-datetime-picker time ng-model="activityModel.end">
+          <span class="input-label">Hora Fim</span>
+          <small ng-if="activityModel.end">{{activityModel.end | date: 'HH:mm'}}</small>
+          <div class="form-errors" ng-if="!activityModel.end">
+            <div class="form-error">Campo de preenchimento obrigatório!</div>
+          </div>
+        </div>
+      </ion-list>
+    </ion-content>
+  </form>
+</ion-view>

@@ -1,0 +1,153 @@
+<ion-view view-title="FICHA DO CONTACTO">
+  <ion-content>
+    <div id="profile-info">
+      <img id="profile-image" src="img/avatar_720-vflYJnzBZ.png">
+      <h3 id="profile-name">{{contact.name}}</h3>
+      <span id="profile-description">{{contact.title}}</span>
+      <div id="profile-buttons">
+        <a ng-click="updateContact()" class="button button-small button-dark">Editar</a>
+        <a ng-click="deleteContact()" class="button button-small button-assertive">Apagar</a>
+      </div>
+    </div>
+    <ion-item class="item-dark item-divider">
+      <span>LOCALIZAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Morada</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.location.address || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Localidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.location.postal || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row" ng-if="contact.location.country == 'PT'">
+      <div class="col">
+        <strong>Concelho</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.location.parish || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row" ng-if="contact.location.country == 'PT'">
+      <div class="col">
+        <strong>Distrito</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.location.state || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>País</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(contact.location.country | isoCountry) || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider" ng-if="contact.entity">
+      <span>ENTIDADE ASSOCIADA</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Tipo</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.entity ? 'Cliente' : 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Nome</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.entity.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>CONTACTOS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telemóvel</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="contact.mobile" href="tel:{{contact.mobile}}" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-telephone-outline"></i>
+          <span>{{contact.mobile}}</span>
+        </a>
+        <span ng-if="!contact.mobile">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telefone</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="contact.phone" href="tel:{{contact.phone}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-home-outline"></i>
+          <span>{{contact.phone}}</span>
+        </a>
+        <span ng-if="!contact.phone">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telefone 2</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="contact.phone2" href="tel:{{contact.phone2}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-home-outline"></i>
+          <span>{{contact.phone2}}</span>
+        </a>
+        <span ng-if="!contact.phone2">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-33">
+        <strong>E-mail</strong>
+      </div>
+      <div class="col text-right">
+        <button ng-if="contact.email" ng-click="sendEmail(contact.email)" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-email-outline"></i>
+          <span>{{contact.email}}</span>
+        </button>
+        <span ng-if="!contact.email">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>ADMINISTRAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Responsável</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.owner.name || 'Administrador'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Identficador</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{contact.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Última actualização</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(contact.dateModified | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

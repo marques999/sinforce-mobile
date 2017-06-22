@@ -1,0 +1,95 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">{{warehouse.name}}</h1>
+    <div class="buttons">
+      <button class="button" ng-click="warehouseModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-item class="item item-dark item-divider">
+      <span>INFORMAÇÕES GERAIS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Identificador</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Descrição</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telefone</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="warehouse.phone" href="tel:{{warehouse.phone}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-telephone-outline"></i>
+          <span>{{warehouse.phone}}</span>
+        </a>
+        <span ng-if="!warehouse.phone">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>LOCALIZAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Morada</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.location.address || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Código-postal</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.location.postal || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Localidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.location.parish || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Distrito</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{warehouse.location.state || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>País</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(warehouse.location.country | isoCountry) || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>PRODUTOS</span>
+    </ion-item>
+    <ion-item class="row" ng-repeat="product in warehouse.products">
+      <div class="col col-67">
+        <p class="wrap">{{product.name}}</p>
+      </div>
+      <div class="col">
+        <button class="button button-block button-outline button-small" ng-class="(product.stock > 0 && 'button-balanced') || 'button-assertive'">{{product.price | currency:"€"}}</button>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-modal-view>

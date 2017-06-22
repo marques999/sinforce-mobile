@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE PRODUTO DE PAGAMENTO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="productSelectionModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="method in products" ng-click="productSelectionModal.hide()" ng-model="proposalsForm.paymentmethod" ng-value="method.id" ng-change="changeValue(method)">
+        <strong class="col-20">{{method.id}}</strong>
+        <p>{{method.name}}</p>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

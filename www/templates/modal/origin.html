@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE ORIGEM</h1>
+    <div class="buttons">
+      <button class="button" ng-click="originModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="ori in origem" ng-click="originModal.hide()" ng-model="opportunityForm.origin" ng-value="ori.origem">
+        <div class="row">
+          <strong class="col-20">{{ori.origem}}</strong>
+          <span>{{ori.descricao}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

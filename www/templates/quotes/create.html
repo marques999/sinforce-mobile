@@ -1,0 +1,91 @@
+<ion-view>
+  <form name="globalView">
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-buttons side="right">
+        <button class="button buttons header-item" ng-click="saveQuote()" style="margin-right:7px;" ng-disabled="globalView.$invalid">Enviar</button>
+        <button ng-click="goHome()" class="button buttons header-item">Cancelar</button>
+      </ion-nav-buttons>
+      <ion-nav-title>Criação de Encomenda</ion-nav-title>
+    </ion-nav-bar>
+    <ion-content>
+      <ion-item class="item item-dark item-divider" style="text-align:center">
+        <span>INFORMAÇÕES DO COMPRADOR</span>
+      </ion-item>
+      <!--label class="item item-input item-stacked-label">
+				<strong class="input-label">Nome da Oportunidade: </strong>
+				<button class="button button-icon input-icon ion-edit button-edit" ng-click="openOpportunitiesModal()"></button>
+				<input type="text" ng-model="opportunityName" readonly>
+			</label-->
+      <label class="item item-input item-stacked-label">
+				<strong class="input-label">Nome do Cliente: </strong>
+				<button class="button button-icon input-icon ion-edit button-edit" ng-click="openCostumersModal()"></button>
+				<input type="text" name="costumerName" ng-model="entityModel.customer.name" ng-required="true" readonly>
+				<div class="form-errors" ng-messages="globalView.costumerName.$error">
+					<div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+				</div>
+			</label>
+      <label class="item item-input item-stacked-label">
+				<strong class="input-label">Numero de Contribuinte:</strong>
+				<input type="number" ng-model="customer.taxNumber" placeholder="Ex. 12345678">
+			</label>
+      <div class="item item-divider">Endereço de Entrega</div>
+      <label class="item item-input item-stacked-label">
+				<strong class="input-label">Morada:</strong>
+				<input type="text" ng-model="customer.location.address">
+			</label>
+      <label class="item item-input item-stacked-label">
+				<strong class="input-label">Codigo Postal:</strong>
+				<input type="text" ng-model="customer.location.postal">
+			</label>
+      <label class="item item-input item-stacked-label">
+				<strong class="input-label">Localidade:</strong>
+				<input type="text" ng-model="customer.location.parish">
+			</label>
+      <label class="item item-input item-stacked-label">
+				<button class="button button-icon input-icon ion-edit button-edit" ng-click="openStateModal()"></button>
+				<strong class="input-label">Distrito:</strong>
+				<input type="text" ng-model="locationModel.state.name" readonly>
+			</label>
+      <label class="item item-input item-stacked-label">
+				<button class="button button-icon input-icon ion-edit button-edit" ng-click="openCountryModal()"></button>
+				<strong class="input-label">Pais:</strong>
+				<input type="text" ng-model="locationModel.country.name" readonly>
+			</label>
+      <ion-item class="item item-dark item-divider" style="text-align:center">
+        <span>ADICIONAR PRODUTOS</span>
+      </ion-item>
+      <ion-item ng-repeat="product in quoteProducts" style="padding:0">
+        <div class="row">
+          <div class="col">
+            <strong>{{product.name || "N/A"}}</strong>
+            <label class="item-input" style="margin-bottom: -10px;height:20px;">
+							<span class="input-label">Artigo:</span>
+							<input type="text" ng-model="product.id" readonly>
+						</label>
+            <label class="item-input" style="margin-bottom: -25px;">
+							<span class="input-label">IVA (%):</span>
+							<input type="number" ng-model="product.tax" readonly>
+						</label>
+            <label class="item-input" style="margin-bottom: -25px;">
+							<span class="input-label">Preço Unitário (€):</span>
+							<input type="number" ng-model="product.average" step="0.01">
+						</label>
+            <label class="item-input" style="margin-bottom: -25px;">
+							<span class="input-label">Quantidade ({{product.units}}):</span>
+							<input type="number" ng-model="product.quantity">
+						</label>
+            <label class="item-input" style="margin-bottom: -25px;">
+							<span class="input-label">Desconto (%):</span>
+							<input type="number" name="product" ng-model="product.discount" ng-max="100" ng-min="0" step="0.01">
+						</label>
+            <h2 style="text-align:right;font-weight:bold;margin-right:20px;color:#444;">Total: {{ product.average*product.quantity*(1 - product.discount/100)*(1 + product.tax/100) | currency: '€'}}</h2>
+            <div class="form-errors" ng-if="product.discount == undefined">
+              <div class="form-error">{{product.discount}}Desconto Deve Estar Entre 0 e 100</div>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+      <button class="button button-royal" style="margin-top:10px;margin-left:10px;margin-bottom: 20px;" ng-click="openProductModal()">Adicionar Produto</button>
+    </ion-content>
+  </form>
+</ion-view>

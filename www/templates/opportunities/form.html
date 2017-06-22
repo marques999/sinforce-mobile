@@ -1,0 +1,101 @@
+<ion-view view-title="{{formTitle}}" ng-init="initializeView()">
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button" ng-if="submitField == 'Retroceder' && opportunityForm.status == 'Aberta'" ng-click="createProposal(opportunityForm.id)">Criar Proposta</button>
+      <button class="button" ng-click="action()">{{submitField}}</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-refresher pulling-text="Atualizar..." on-refresh="initializeView()"></ion-refresher>
+    <form name="contactForm">
+      <ion-list>
+        <ion-item class="item-dark item-divider">
+          <span>INFORMAÇÕES GERAIS</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Descrição</span>
+          <input type="text" name="name" ng-model="opportunityForm.description" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Resumo</span>
+          <textarea ng-model="opportunityForm.brief" style="resize:none;" ng-disabled="formIsDisabled"></textarea>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>ENTIDADE</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Origem</span>
+          <input type="text" name="source" ng-model="opportunityForm.entityType" ng-required="true" ng-click="viewSources()" readonly>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Contacto</span>
+          <input type="text" name="entity" ng-model="opportunityForm.entity" ng-required="true" ng-click="viewEntities()" readonly>
+        </ion-item>
+        <ion-item class="item-dark item-divider">
+          <span>GERAL</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="formTitle != 'NOVA OPORTUNIDADE'">
+          <span class="input-label">Estado</span>
+          <input type="text" ng-model="opportunityForm.status" ng-click="viewStates()" ng-required="true" readonly ng-required="true">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="opportunityForm.status == 'Perdida'">
+          <span class="input-label">Motivo de perda</span>
+          <input type="text" ng-model="opportunityForm.lossMotive" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Origem</span>
+          <input type="text" name="origin" ng-model="opportunityForm.origin" ng-click="viewOrigin()" readonly ng-required="true">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Ciclo de Venda</span>
+          <input type="text" name="sellscycle" ng-model="opportunityForm.sellscycle" ng-click="viewSellCycle()" readonly ng-required="true">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Zona</span>
+          <input type="text" name="zone" ng-model="opportunityForm.zone" ng-click="viewZones()" readonly ng-required="true">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Campanha</span>
+          <input type="text" ng-model="opportunityForm.campaign" ng-click="viewCampaigns()" readonly ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Data de criação</span>
+          <input type="date" ng-model="dates.dateOrdered" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label">
+          <span class="input-label">Data de expiração</span>
+          <input type="date" ng-model="dates.dateExpiration" ng-required="true" ng-disabled="formIsDisabled">
+        </ion-item>
+        <ion-item class="item-dark item-divider" ng-if="formTitle != 'NOVA OPORTUNIDADE'">
+          <span>VALORES</span>
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="formTitle != 'NOVA OPORTUNIDADE'">
+          <span class="input-label">Margem da Oportunidade de Venda (EUR)</span>
+          <input type="text" name="marginOV" ng-model="opportunityForm.marginOV" readonly ng-required="true" ng-change="updateMargin()">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="formTitle != 'NOVA OPORTUNIDADE'">
+          <span class="input-label">Valor total da Oportunidade de Venda (EUR)</span>
+          <input type="text" name="valorOV" ng-model="opportunityForm.totalValueOV" readonly ng-required="true" ng-change="updateMargin()">
+        </ion-item>
+        <ion-item class="item-input item-stacked-label" ng-if="formTitle != 'NOVA OPORTUNIDADE'">
+          <span class="input-label">Margem Percentual da Oportunidade de Venda (%)</span>
+          <input type="text" name="marginPercOV" ng-model="opportunityForm.marginPercOV" readonly ng-required="true">
+        </ion-item>
+        <ion-item class="item-dark item-divider" ng-if="proposals.length > 0">
+          <span>PROPOSTAS</span>
+        </ion-item>
+        <ion-item ng-repeat="proposal in proposals" class="item-input item-stacked-label" ng-click="viewProposal(proposal.idOportunidade, proposal.proposalnumber)">
+          <div>
+            <span class="input-label">{{proposal.proposalnumber}}. {{proposal.description}}</span>
+            <p>{{proposal.observations}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

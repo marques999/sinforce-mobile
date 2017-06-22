@@ -1,0 +1,119 @@
+<ion-view title="FICHA DA ATIVIDADE">
+  <ion-content>
+    <div id="profile-info">
+      <i id="profile-icon" ng-class="glyphIcons[activity.type.id]" class="fa fa-4x"></i>
+      <h3 id="profile-name">{{activity.name}}</h3>
+      <span id="profile-description">{{activity.type.name}}</span>
+      <div id="profile-buttons">
+        <a ng-click="updateActivity()" class="button button-small button-dark">Editar</a>
+        <a ng-click="deleteActivity()" class="button button-small button-assertive">Cancelar</a>
+      </div>
+    </div>
+    <ion-item class="item item-dark item-divider" ng-if="activity.description">
+      <span>DESCRIÇÃO</span>
+    </ion-item>
+    <ion-item class="full-text" ng-if="activity.description">
+      <span>{{activity.description}}</span>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>INFORMAÇÕES GERAIS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Local</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{activity.location || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Estado</strong>
+      </div>
+      <div class="col text-right" ng-class="getStatusColor(activity)">
+        <span>{{getStatusDescription(activity)}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Prioridade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{getPriority(activity)}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>CALENDÁRIO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Data início</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(activity.start | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Data fim</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(activity.end | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Duração</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{activity.duration}} {{activity.duration == 1 ? 'minuto' : 'minutos'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>ENTIDADE ASSOCIADA</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Tipo Entidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{activity.entity.type | entityType}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Nome</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{activity.entity.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider">
+      <span>ADMINISTRAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Responsável</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{activity.owner.name || 'Administrador'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Data criação</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(activity.dateCreated | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Última actualização</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(activity.dateModified | defaultdate) || 'N/A'}}</span>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

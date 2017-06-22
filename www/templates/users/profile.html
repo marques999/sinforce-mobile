@@ -1,0 +1,106 @@
+<ion-view view-title="PERFIL">
+  <ion-content>
+    <div id="profile-info">
+      <img id="profile-image" src="img/avatar_720-vflYJnzBZ.png">
+      <h3 id="profile-name">{{session.name}}</h3>
+      <span id="profile-description">{{session.company}}</span>
+      <div id="profile-buttons">
+        <a class="button button-small button-dark" ui-sref="app.users-update({id: session.id})">Editar</a>
+        <a class="button button-small button-assertive">Apagar</a>
+      </div>
+    </div>
+    <ion-item class="item-dark item-divider">
+      <span>INFORMAÇÕES GERAIS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Username</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{session.username || 'N/A'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Identficador</strong>
+      </div>
+      <div class="col text-right">
+        <span>#{{session.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Comissão</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{session.comission | percentage}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>CONTACTOS</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-33">
+        <strong>E-mail</strong>
+      </div>
+      <div class="col text-right">
+        <button ng-if="session.email" ng-click="sendEmail(session.email)" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-email-outline"></i>
+          <span>{{session.email}}</span>
+        </button>
+        <span ng-if="!session.email">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telemóvel</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="session.mobile" href="tel:{{session.mobile}}" class="button button-small button-outline button-positive">
+          <i class="icon ion-ios-telephone-outline"></i>
+          <span>{{session.mobile}}</span>
+        </a>
+        <span ng-if="!session.mobile">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col col-50">
+        <strong>Telefone</strong>
+      </div>
+      <div class="col text-right">
+        <a ng-if="session.phone" href="tel:{{session.phone}}" class="button button-small button-outline button-balanced">
+          <i class="icon ion-ios-home-outline"></i>
+          <span>{{session.phone}}</span>
+        </a>
+        <span ng-if="!session.phone">N/A</span>
+      </div>
+    </ion-item>
+    <ion-item class="item-dark item-divider">
+      <span>LOCALIZAÇÃO</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Morada</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{session.address || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Código Postal</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{session.postal || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Localidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{session.parish || "N/A"}}</span>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

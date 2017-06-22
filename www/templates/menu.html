@@ -1,0 +1,61 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content edge-drag-threshold="64">
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left" expose-aside-when="large">
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">sinFORCE</h1>
+      <button class="button button-icon button-clear ion-gear-a" menu-close ng-click="actionLogout()"></button>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list class="list-menu">
+        <ion-item ng-if="session" class="item-avatar item-dark" menu-close ui-sref="app.users-profile({id: session.representative})">
+          <img src="img/9061906.png">
+          <h2>{{session.name}}</h2>
+          <p>{{session.company}}</p>
+        </ion-item>
+        <ion-item ng-if="!session" class="item-avatar item-dark" menu-close ui-sref="app.login">
+          <img src="img/avatar_720-vflYJnzBZ.png">
+          <h2>Guest</h2>
+          <p>Iniciar sessão</p>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.agenda.calendar">
+          <i class="icon custom-icon ion-calendar"></i>
+          <span>Agenda</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.customers.dashboard">
+          <i class="icon custom-icon ion-star"></i>
+          <span>Clientes</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.contacts">
+          <i class="icon custom-icon ion-person"></i>
+          <span>Contactos</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.leads.dashboard">
+          <i class="icon custom-icon ion-pinpoint"></i>
+          <span>Leads</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.opportunities.dashboard">
+          <i class="icon custom-icon ion-location"></i>
+          <span>Oportunidades</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.quotes.list">
+          <i class="icon custom-icon ion-cube"></i>
+          <span>Encomendas</span>
+        </ion-item>
+        <ion-item class="item-dark" menu-close ui-sref="app.products.list">
+          <i class="icon custom-icon ion-pricetag"></i>
+          <span>Produtos</span>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

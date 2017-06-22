@@ -1,0 +1,142 @@
+<ion-view view-title="Encomenda Nº. {{quote.quoteNum}}">
+  <ion-content>
+    <div class="bar bar-header bar-dark" style="position:static;">
+      <h1 class="title">INFORMAÇÕES GERAIS</h1>
+    </div>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Número</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.quoteNum}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Cliente</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.clientName}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Data</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider" style="text-align:center">
+      <span>RECEITA</span>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Total Líquido</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.totalMerc | currency: '€'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Desconto</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.totalDesc | currency: '€'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>IVA</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.totalIva | currency: '€'}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Total</strong>
+      </div>
+      <div class="col text-right">
+        <strong>{{quote.totalDocument | currency: '€'}} </strong>
+      </div>
+    </ion-item>
+    <ion-item class="item item-dark item-divider" style="text-align:center">
+      <span>INFORMAÇÕES DO CLIENTE</span>
+    </ion-item>
+    <ion-item class="row" ng-click="viewCostumer(quote.clientRef)">
+      <div class="col">
+        <strong>Entidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.clientRef}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Número de Contribuinte</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.taxPayNumb || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Morada</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.shippingAddress.address || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Código Postal</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.shippingAddress.postal || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Localidade</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.shippingAddress.parish || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Destrito</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{quote.shippingAddress.state || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <ion-item class="row">
+      <div class="col">
+        <strong>Pais</strong>
+      </div>
+      <div class="col text-right">
+        <span>{{(quote.shippingAddress.country | isoCountry ) || "N/A"}}</span>
+      </div>
+    </ion-item>
+    <div class="bar bar-header bar-dark" style="position:static;">
+      <h1 class="title">PRODUTOS</h1>
+    </div>
+    <ion-item ng-repeat="product in quote.products track by $index" style="padding:0">
+      <div class="row">
+        <div class="col">
+          <strong>{{product.product.name || "N/A"}}</strong>
+          <p>
+            Artigo: {{product.product.id || "N/A"}}
+            <br>Quantidade: {{product.quantity + " " + product.units}}
+            <br>Preço Unitário: {{ product.price | currency: '€'}} + {{product.tax}}% IVA
+            <br>Desconto: {{roundDouble(product.discount)}}%
+          </p>
+          <h2 style="text-align:right;font-weight:bold;margin-right:20px;color:#444;">Total: {{ product.price*product.quantity*(1 - product.discount/100)*(1 + product.tax/100) | currency: '€'}}</h2>
+        </div>
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

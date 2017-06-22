@@ -1,0 +1,111 @@
+<ion-view view-title="LEAD">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+  <ion-nav-buttons side="right">
+    <button class="button" ng-if="!leadCreation" ng-click="applyNconvertLead()">Converter em Cliente</button>
+    <!--button class="button" ng-click="killLead()">Submeter</button-->
+    <button class="button" ng-click="submitLead()">Submeter</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <form name="leadForm">
+      <!--span class="button button-energized button-bar" ng-click="applyLead()"> Aplicar Alterações </span>
+<span class="button button-calm button-bar" ng-click="applyNconvertLead()"> Aplicar Alterações e Converter em Cliente </span>
+<span class="button button-assertive button-bar" ng-click="killLead()"> Lead Morta </span-->
+
+      <ion-item class="item item-input item-stacked-label">
+        <span class="input-label">Nome</span>
+        <input id="name" name="name" type="text" value="{{lead.name}}" ng-required="true">
+        <div class="form-errors" ng-messages="leadForm.name.$error">
+          <div class="form-error" ng-message="required">Campo de preenchimento obrigatório!</div>
+        </div>
+      </ion-item>
+
+      <ion-item class="item item-input item-select">
+        <div class="input-label">
+          Estado
+        </div>
+        <select id="thirdPartyType">
+                      <option ng-if="lead.thirdPartyType===null&&!leadCreation" value="" selected>Por Definir</option>
+                        <option ng-repeat="thirdpartytype in thirdpartytypes" ng-selected="thirdpartytype.id===lead.thirdPartyType"
+                        ng-if="!leadCreation&&!(thirdpartytype.name.toLowerCase()==='convertida') ||
+                        leadCreation&&!(thirdpartytype.name.toLowerCase()==='convertida'||thirdpartytype.name.toLowerCase()==='morta')"
+                        value="{{thirdpartytype.id}}" >{{thirdpartytype.name}}</option>
+                    </select>
+      </ion-item>
+
+      <ion-list>
+        <div ng-repeat="group in groups" ng-if="$index < 2">
+          <ion-item class="item-dark item-divider" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+            <i class="icon" ng-class="isGroupShown(group) ? 'ion-arrow-down-b' : 'ion-arrow-right-b'"></i> &nbsp; {{group.name}}
+          </ion-item>
+          <ion-item class="item item-input item-stacked-label" ng-repeat="item in group.items" ng-show="isGroupShown(group)">
+            <span class="input-label">{{item.name}}</span>
+            <input id="{{item.id}}" type="text" value="{{item.value}}">
+          </ion-item>
+        </div>
+        <!-- GRUPO 2 -->
+        <ion-item class="item-dark item-divider" ng-click="toggleGroup(groups[2])" ng-class="{active: isGroupShown(groups[2])}">
+          <i class="icon" ng-class="isGroupShown(groups[2]) ? 'ion-arrow-down-b' : 'ion-arrow-right-b'"></i> &nbsp; {{groups[2].name}}
+        </ion-item>
+        <!-- NÚMERO DE CONTRIBUINTE -->
+        <ion-item class="item item-input item-stacked-label" ng-show="isGroupShown(groups[2])">
+          <span class="input-label">Número de Contribuinte</span>
+          <input id="numCont" type="text" value="{{lead.numCont}}">
+        </ion-item>
+        <!-- PAIS -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[2])">
+          <div class="input-label">Pais</div>
+          <select id="country">
+              <option></option>
+              <option ng-selected="country.id===lead.location.country" ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+          </select>
+        </ion-item>
+        <!-- IDIOMA -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[2])">
+          <div class="input-label">Idioma</div>
+          <select id="idiom">
+              <option></option>
+              <option ng-selected="idiom.id===lead.idiom" ng-repeat="idiom in idioms" value="{{idiom.id}}" >{{idiom.name}}</option>
+          </select>
+        </ion-item>
+        <!-- GRUPO 3 -->
+        <ion-item class="item-dark item-divider" ng-click="toggleGroup(groups[3])" ng-class="{active: isGroupShown(groups[3])}">
+          <i class="icon" ng-class="isGroupShown(groups[3]) ? 'ion-arrow-down-b' : 'ion-arrow-right-b'"></i> &nbsp; {{groups[3].name}}
+        </ion-item>
+        <!-- TIPO ENTIDADE -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[3])">
+          <div class="input-label">Pessoa</div>
+          <select id="singular">
+            <option ng-selected="true===lead.singular">Singular</option>
+            <option ng-selected="false===lead.singular">Coletiva</option>
+          </select>
+        </ion-item>
+        <!-- TIPO MERCADO -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[3])">
+          <div class="input-label">Tipo de Mercado</div>
+          <select id="marketType">
+            <option ng-selected="'0'===lead.marketType" value="0">Nacional</option>
+            <option ng-selected="'1'===lead.marketType" value="1">Intracomunitário</option>
+            <option ng-selected="'2'===lead.marketType" value="2">Externo</option>
+          </select>
+        </ion-item>
+        <!-- ZONA -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[3])">
+          <div class="input-label">Zona</div>
+          <select id="zone">
+            <option></option>
+            <option ng-selected="zone.id == lead.zone" ng-repeat="zone in zones" value="{{zone.id}}">{{zone.name}}</option>
+          </select>
+        </ion-item>
+        <!-- DISTRITO -->
+        <ion-item class="item item-input item-select" ng-show="isGroupShown(groups[3])">
+          <div class="input-label">Distrito</div>
+          <select id="state">
+            <option></option>
+            <option ng-selected="district.id == lead.location.state" ng-repeat="district in districts" value="{{district.id}}">{{district.name}}</option>
+          </select>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

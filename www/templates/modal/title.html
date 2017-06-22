@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-royal">
+    <h1 class="title">SELECCIONE TÍTULO</h1>
+    <div class="buttons">
+      <button class="button" ng-click="titleModal.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-radio ng-repeat="title in titles" ng-click="titleModal.hide()" ng-model="userModel.title" ng-value="title">
+        <div class="row">
+          <strong class="col-20">{{title.id || 'NULL'}}</strong>
+          <span>{{title.name || 'Desconhecido'}}</span>
+        </div>
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
